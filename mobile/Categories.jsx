@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 
 export default function Categories() {
 
@@ -20,12 +20,23 @@ export default function Categories() {
   },[])
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Text>Liste de catégories</Text>
       {
         Categories.map((cat, i) => (
-          <Text key={i}>
-            {cat.nom}
-          </Text>
+          <TouchableOpacity
+            key={i}
+            style={styles.buttonFacebookStyle}
+            activeOpacity={0.5}>
+            <Image
+              source={{
+                uri:
+                  'https://raw.githubusercontent.com/AboutReact/sampleresource/master/facebook.png',
+              }}
+              style={styles.buttonImageIconStyle}
+          />
+          <View style={styles.buttonIconSeparatorStyle} />
+          <Text style={styles.buttonTextStyle}>{cat.nom}</Text>
+        </TouchableOpacity>
         ))
       }
       <StatusBar style="auto" />
@@ -33,11 +44,49 @@ export default function Categories() {
   );
 }
 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    margin: 10,
+    marginTop: 30,
+    padding: 30,
+  },
+  buttonGPlusStyle: {
+    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: '#dc4e41',
+    borderWidth: 0.5,
+    borderColor: '#fff',
+    height: 40,
+    borderRadius: 5,
+    margin: 5,
+  },
+  buttonFacebookStyle: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#485a96',
+    borderWidth: 0.5,
+    borderColor: '#fff',
+    height: 40,
+    borderRadius: 5,
+    margin: 5,
+  },
+  buttonImageIconStyle: {
+    padding: 10,
+    margin: 5,
+    height: 25,
+    width: 25,
+    resizeMode: 'stretch',
+  },
+  buttonTextStyle: {
+    color: '#fff',
+    marginBottom: 4,
+    marginLeft: 10,
+  },
+  buttonIconSeparatorStyle: {
+    backgroundColor: '#fff',
+    width: 1,
+    height: 40,
   },
 });
